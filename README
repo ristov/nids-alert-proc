@@ -1,0 +1,61 @@
+Stream Clustering and Active Learning Toolkit for Classifying NIDS Alerts
+
+
+Introduction
+------------
+This repository contains a stream clustering and active learning toolkit for 
+classifying NIDS alerts. 
+
+The alert-proc.pl script implements a simplified version of the SCAS algorithm
+(https://github.com/ristov/scas) which clusters the stream of Suricata NIDS
+alerts in real time, producing alert groups in JSON format for output. 
+Each alert group has a field "Label" which indicates whether the group belongs
+to a cluster (Label=0) or is an outlier (Label=1).
+
+The alert-proc-csv.pl script converts the output from alert-proc.pl to CSV
+format which is suitable for use with the alert-train-classifier*.py and 
+alert-classify*.py scripts.
+
+The alert-proc-statefile.pl script outputs the state file of alert-proc.pl
+in human readable format.
+
+The alert-train-classifier.py script trains the classifier on a labeled
+data set in CSV format, assuming that the "Label" field holds the label set
+by the human expert. The alert-train-classifier-wo-categorical.py script
+is similar to alert-train-classifier.py, but it does not consider categorical 
+features in the data set.
+
+The alert-classify.py script is designed for real-time classification of
+alert groups produced by alert-proc.pl and converted by alert-proc-csv.pl. 
+For classification, alert-classify.py uses the model previously created by 
+alert-train-classifier.py, and processes alert groups read from standard 
+input one by one. Classified alert groups will be printed to standard output 
+in JSON format, with the label stored in the "Label2" field. 
+The alert-classify-wo-categorical.py script is similar to alert-classify.py,
+but it does not consider categorical features in incoming data points.
+
+
+Availability and licensing
+--------------------------
+This toolkit is available from https://github.com/ristov/nids-active-learning, 
+and is distributed under the terms of GNU General Public License version 2 
+(see the file COPYING).
+
+
+Usage example
+-------------
+Here is an example for training a random forest classifier with training 
+data in training.csv (the CSV file must have the same format as produced by
+alert-proc-csv.pl), so that the model will be stored to file model-rf:
+
+alert-train-classifier.py training.csv model-rf
+
+Here is an example of using the previously created random forest classifier 
+for classifying Suricata NIDS alerts in real-time fashion:
+
+tail -F /var/log/suricata/eve.json | alert-proc.pl --homenet=192.168.1.0/24 --alpha=0.01 --output=- | alert-proc-csv.pl | nids-alert-classify.py model-rf 
+
+
+Author
+------
+Risto Vaarandi (ristov at users d0t s0urcef0rge d0t net)
