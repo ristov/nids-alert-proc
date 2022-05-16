@@ -49,7 +49,7 @@ $ref = eval { retrieve($statefile) };
 
 if (!defined($ref)) {
   print STDERR "Can't read state file $statefile: $!\n";
-  return;
+  exit(1);
 }
 
 %clusters = %{$ref->{"Clusters"}};
