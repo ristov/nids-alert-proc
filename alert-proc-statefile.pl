@@ -55,7 +55,7 @@ if (!defined($ref)) {
 %clusters = %{$ref->{"Clusters"}};
 %candidates = %{$ref->{"Candidates"}};
 
-$default_centroid = $ref->{"DefaultCentroid"};
+$outliers = $ref->{"DefaultCentroid"};
 
 $max_clusters = $ref->{"MaxClusters"};
 $max_candidates = $ref->{"MaxCandidates"};
@@ -78,10 +78,10 @@ foreach $id (keys %candidates) {
   print_centroid($candidates{$id});
 }
 
-print "Default centroid:\n";
+print "Centroid of outliers:\n";
 print "-" x 60, "\n\n";
 
-print_centroid($default_centroid);
+print_centroid($outliers);
 
 print "Signature Matches:\n";
 print "-" x 60, "\n\n";
