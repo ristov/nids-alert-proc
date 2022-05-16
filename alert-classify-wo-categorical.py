@@ -34,7 +34,8 @@ headers = next(csvfile)
 
 for fields in csvfile:
     df = pd.DataFrame([fields], columns=headers)
-    X = df.drop(columns=['Timestamp', 'SignatureText', 'Label', 'SignatureID', 'Proto', 'ExtIP', 'ExtPort', 'IntIP', 'IntPort'])
+    X = df.drop(columns=['Timestamp', 'SignatureText', 'Label', 
+        'SignatureID', 'Proto', 'ExtIP', 'ExtPort', 'IntIP', 'IntPort'])
     result = model.predict(X)
     df['Label2'] = result[0]
     temp = df.to_dict(orient="records")

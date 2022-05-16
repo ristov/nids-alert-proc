@@ -4,12 +4,6 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import AdaBoostClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import GradientBoostingClassifier
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.svm import LinearSVC
-from sklearn.linear_model import LogisticRegression
-
-from sklearn.pipeline import make_pipeline
-from sklearn.preprocessing import StandardScaler
 
 import pickle
 import sys

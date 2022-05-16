@@ -44,11 +44,11 @@ and is distributed under the terms of GNU General Public License version 2
 
 Usage example
 -------------
-Here is an example for training a random forest classifier with training 
-data in training.csv (the CSV file must have the same format as produced by
+Here is an example for training a random forest (rf) classifier with training 
+data from training.csv (the CSV file must have the same format as produced by
 alert-proc-csv.pl), so that the model will be stored to file model-rf:
 
-alert-train-classifier.py training.csv model-rf
+alert-train-classifier.py training.csv rf model-rf
 
 Here is an example of using the previously created random forest classifier 
 for classifying Suricata NIDS alerts in real-time fashion:
