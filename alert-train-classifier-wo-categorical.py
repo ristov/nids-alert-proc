@@ -35,7 +35,7 @@ elif sys.argv[2] == "abdt":
     clf = AdaBoostClassifier(DecisionTreeClassifier(max_depth=3), 
                              n_estimators=100, random_state=1)
 elif sys.argv[2] == "gbdt":
-    clf = GradientBoostingClassifier(n_estimators=100, max_depth=3, 
+    clf = GradientBoostingClassifier(n_estimators=300, max_depth=2, 
                                      random_state=1)
 elif sys.argv[2] == "knn":
     clf = make_pipeline(StandardScaler(), KNeighborsClassifier(n_neighbors=50))
