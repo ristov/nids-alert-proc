@@ -17,7 +17,7 @@ import sys
 if len(sys.argv) != 4:
     print("Usage:", sys.argv[0], "<csv_file> <model> <model_file>", 
           file = sys.stderr)
-    print("<model> = rf|dt|abdt|gbdt|knn|svml|lr", file = sys.stderr)
+    print("<model> = rf|dt|abdt|gbdt|knn|svm|lr", file = sys.stderr)
     sys.exit(0)
 
 training_set = pd.read_csv(sys.argv[1])
@@ -39,7 +39,7 @@ elif sys.argv[2] == "gbdt":
                                      random_state=1)
 elif sys.argv[2] == "knn":
     clf = make_pipeline(StandardScaler(), KNeighborsClassifier(n_neighbors=50))
-elif sys.argv[2] == "svml":
+elif sys.argv[2] == "svm":
     clf = make_pipeline(StandardScaler(), LinearSVC(random_state=1, dual=False))
 elif sys.argv[2] == "lr":
     clf = make_pipeline(StandardScaler(), LogisticRegression(max_iter=1000, 
