@@ -183,7 +183,7 @@ sub main_loop {
 
     @data = ();
 
-    push @data, $ref->{"Timestamp"};
+    push @data, $ref->{"ReportingTime"};
 
     $ref->{"SignatureText"} =~ s/,//g;
 

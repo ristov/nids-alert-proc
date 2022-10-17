@@ -1062,6 +1062,8 @@ sub process_alert {
 
   delete $alert->{"Attributes"};
 
+  $alert->{"ReportingTime"} = time();
+
   output_alert($alert);
 
 }
