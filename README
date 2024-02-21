@@ -6,6 +6,13 @@ Introduction
 This repository contains a stream clustering guided supervised learning toolkit 
 for classifying NIDS alerts. 
 
+The experiments conducted with the toolkit have been described in the following paper:
+
+Risto Vaarandi and Alejandro Guerra-Manzanares, 
+"Stream clustering guided supervised learning for classifying NIDS alerts," 
+Future Generation Computer Systems, vol. 155, pp. 231-244, 2024, 
+https://doi.org/10.1016/j.future.2024.01.032
+
 The alert-proc.pl script implements a customized version of the SCAS algorithm
 (https://github.com/ristov/scas) and clusters the stream of Suricata NIDS
 alerts in real time, producing alert groups in JSON format for output. 
