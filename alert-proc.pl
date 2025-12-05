@@ -580,6 +580,13 @@ sub process_dns_alert {
     $attref->{"DnsRrtype"} = {};
   }
 
+  # Please note that the following 2 lines of code have been written
+  # for Suricata DNS logging format v2. Suricata version 8 (released
+  # in July 2025) introduces DNS logging format v3, which assumes
+  # that the keyword "query" will be replaced with the keyword "queries" 
+  # in the following 2 lines. See the following web page for more details: 
+  # https://docs.suricata.io/en/latest/upgrade/8.0-dns-logging-changes.html
+
   if (exists($ref->{"dns"}->{"query"})) {
 
     foreach $elem (@{$ref->{"dns"}->{"query"}}) {
